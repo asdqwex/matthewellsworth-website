@@ -1,0 +1,66 @@
+doctype html
+html(lang="en")
+  head
+    title MatthewEllsworth.com
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href= assetURL + 'assets/bundle.css')
+  body(data-ng-app="matthewellsworth")
+    .container.col-md-12(data-ng-controller="blogController")
+      .row.main
+        .left.col-md-12.notselectable
+          a.block.less(href="/") MY NAME IS
+          a.block.more(href="/") MATTHEW ELLSWORTH
+          span.less.lessoffset.hidden-xs I AM A
+          .row
+            .detail.hidden-xs.col-md-8.col-md-offset-2
+              div LINUX ADMIN and DEVOPS ENGINEER
+              div You can Ask Me Anything
+          .detail.selectable.hidden-xs
+            a(href="mailto:matt.ellsworth@matthewellsworth.com" ) MATT.ELLSWORTH@MATTHEWELLSWORTH.COM
+          .row
+            .detail.hidden-xs.col-md-8.col-md-offset-2
+              span
+              a(border="1px black solid" href="Resume.pdf") Resume
+              span &nbsp&nbsp&nbsp&nbsp&nbsp
+              a(href="https://www.linkedin.com/pub/matthew-ellsworth/24/129/341") LinkedIn
+              span &nbsp&nbsp&nbsp&nbsp&nbsp
+              a(href="https://plus.google.com/u/0/109610982869848839454/posts/p/pub") Google+
+              span &nbsp&nbsp&nbsp&nbsp&nbsp
+              a(href="https://github.com/asdqwex") Github
+
+          #goto.line
+            .block.circleLogo(title="Coffee Console")
+              span.glyphicon.glyphicon-globe(ng-click="isCollapsed = !isCollapsed")
+            .block.circleLogo
+              span.glyphicon.glyphicon-hdd(ng-click="flip()" alt="Up is the new Down")
+            .block.circleLogo
+              span.glyphicon
+                a.glyphicon-tower(ng-href="https://github.com/asdqwex" alt="Github")
+        .bottom
+          .col-md-8.col-md-offset-2
+            include blog.jade
+        .left.col-md-12.notselectable
+          .line
+            .block.circleLogo
+              span.glyphicon.glyphicon-tower
+            .block.circleLogo
+              span.glyphicon.glyphicon-hdd
+            .block.circleLogo
+              span.glyphicon.glyphicon-globe
+      .row
+        .foot
+          div(collapse="isCollapsed")
+            div.well.well-lg
+              iframe( src="http://larryng.github.io/coffeescript-repl/", width="100%", height="200")
+    script(type='text/javascript', src= assetURL + 'assets/bundle.js')
+  script.
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-62608601-2', 'auto');
+    ga('send', 'pageview');
+
+

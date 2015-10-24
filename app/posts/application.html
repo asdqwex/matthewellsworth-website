@@ -1,0 +1,57 @@
+<h3>Assumptions</h3>
+
+- That you followed steps in my last <a href="http://matthewellsworth.com/posts/Creating_a_cloud_server_with_Javascript#goto">article</a><br>
+- You have the IP address and root password to a server somewhere(cloud, vagrant ...etc)<br><br>
+
+From there we execute the following to install ansible and configure it with our servers ipaddress:<br>
+
+<pre>
+  <code class="language-bash">
+sudo yum install ansible\n
+echo 'railsapp ansible_ssh_host=xxx.xxx.xxx.xxx ask_pass' > /etc/ansible/hosts\n
+ansible all -m ping\n
+  </code>
+</pre><br>
+
+Next we create a playbook that will checkout our rails application and run it on the server.<br>
+
+<pre>
+  <code class="language-bash">
+  vim railsapp.playbook
+  </code>
+</pre><br>
+
+Add the following content.<br>
+
+<pre>
+  <code class="language-bash">
+---\n
+- hosts: webservers\n
+  tasks:\n
+  - name: install ruby\n
+    yum: pkg=ruby state=latest\n
+  - name: install rubygems\n
+    yum: pkg=rubygems state=latest\n
+  - name: install rails\n
+    gem: name=rails state=latest\n
+  - name: check out application\n
+    git: repo=https://github.com/asdqwex/rails-demo dest=/opt/railsapp\n
+  - name: run rails\n
+    command: rails server chdir=/opt/railsapp\n
+  </code>
+</pre><br>
+
+Now we need to run the playbook we created.
+
+<pre>
+  <code class="language-bash">
+ansible-playbook playbook.yml -f 10
+  </code>
+</pre><br>
+
+And lastly to verify that the application is running we do the following.
+<pre>
+  <code class="language-bash">
+curl xxx.xxx.xxx.xxx
+  </code>
+</pre><br>
